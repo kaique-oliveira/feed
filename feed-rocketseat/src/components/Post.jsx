@@ -1,18 +1,22 @@
+import { Avatar } from './Avatar';
+import { Comment } from './Comment';
 import styles from './Post.module.css'; 
 
-export function Post(){
+export function Post({ author, publishedAt}){
+  //const publishedDateFormatted ;
   return(
       <article className={styles.post}>
         <header>
           <div className={styles.author}>
-            <img className={styles.avatar} src="https://github.com/kaique-oliveira.png"/>
+          <Avatar src={author.avatarUrl}/>
+            
             <div className={styles.authorInfo}>
-              <strong>Eduardo Andres</strong>
-              <span>Web Developer</span>
+              <strong>{author.name}</strong>
+              <span>{author.role}</span>
             </div>
           </div>
 
-          <time title='11 de Maio às 08:13h' dateTime='2022-05-11 08:13:30'>Pubicado há 1h</time>
+          <time title='11 de Maio às 08:13h' dateTime='2022-05-11 08:13:30'>{ publishedDateFormatted }</time>
         </header>
 
         <div className={styles.content}>
@@ -24,6 +28,24 @@ export function Post(){
             <a href='#'>#nlw</a>{' '}
             <a href='#'>#rocketseat</a>
           </p>
+        </div>
+
+        <form className={styles.commentForm}>
+          <strong>Deixe seu feedback</strong>
+
+          <textarea
+            placeholder='Escreva seu comentário!'          
+          />
+
+          <footer>
+            <button type='submit'>Publicar</button>
+          </footer>
+        </form>
+
+        <div className={styles.commentList}>
+          <Comment />
+          <Comment />
+          <Comment />
         </div>
       </article>
   )
