@@ -5,6 +5,37 @@ import { Sidebar } from "./components/SideBar";
 import styles from './App.module.css';
 import './global.css';
 
+const posts = [
+  {
+    id: 1,
+    author: {
+      avatarUrl: 'https://github.com/diego3g.png',
+      name: 'Diego Fernandes',
+      role: 'CTO @Rocketseat'
+    },
+    constent: [
+      { type: 'paragraph', content: 'Fala galeraa 👋'},
+      { type: 'paragraph', content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀'},
+      { type: 'paragraph', content: '👉 jane.design/doctorcare'}
+    ],
+    publishedAt: new Date('2023-06-18 20:00:00')
+  },
+  {
+    id: 1,
+    author: {
+      avatarUrl: 'https://github.com/maykbrito.png',
+      name: 'Mayk Brito',
+      role: 'CTO @Rocketseat'
+    },
+    constent: [
+      { type: 'paragraph', content: 'Fala galeraa 👋'},
+      { type: 'paragraph', content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀'},
+      { type: 'paragraph', content: '👉 jane.design/doctorcare'}
+    ],
+    publishedAt: new Date('2023-06-17 21:00:00')
+  }
+]
+
 export function App() {
   
   return (
@@ -14,15 +45,18 @@ export function App() {
         <Sidebar/>
 
         <main>
-          <Post
-            author="Kaique Oliveira"
-            content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni dolores expedita voluptatum debitis suscipit inventore veritatis repudiandae exercitationem veniam! Sint perspiciatis similique ullam numquam ipsa officiis consectetur quisquam, aperiam neque."
-          />
-
-          <Post
-            author="Airon Guimaraes"
-            content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni dolores expedita voluptatum debitis suscipit inventore veritatis repudiandae exercitationem veniam! Sint perspiciatis similique ullam numquam ipsa officiis consectetur quisquam, aperiam neque."
-          />
+         {
+          posts.map(post => {
+            return (
+              <Post  
+                key={post.id}
+                author={post.author}
+                content={post.constent}
+                publishedAt={post.publishedAt}
+              />
+            )
+          })
+         }
         </main>
       </div>
     </>
